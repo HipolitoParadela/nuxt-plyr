@@ -5,10 +5,29 @@
         <div class="py-3 text-center">
           <div
             role="alert"
-            class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+            class="
+              p-2
+              bg-indigo-800
+              items-center
+              text-indigo-100
+              leading-none
+              lg:rounded-full
+              flex
+              lg:inline-flex
+            "
           >
             <span
-              class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"
+              class="
+                flex
+                rounded-full
+                bg-indigo-500
+                uppercase
+                px-2
+                py-1
+                text-xs
+                font-bold
+                mr-3
+              "
               >File</span
             >
             <span class="font-semibold mr-2 text-left flex-auto"
@@ -34,10 +53,29 @@
         <div class="py-3 text-center">
           <div
             role="alert"
-            class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+            class="
+              p-2
+              bg-indigo-800
+              items-center
+              text-indigo-100
+              leading-none
+              lg:rounded-full
+              flex
+              lg:inline-flex
+            "
           >
             <span
-              class="flex rounded-full bg-red-700 uppercase px-2 py-1 text-xs font-bold mr-3"
+              class="
+                flex
+                rounded-full
+                bg-red-700
+                uppercase
+                px-2
+                py-1
+                text-xs
+                font-bold
+                mr-3
+              "
               >Youtube</span
             >
             <span class="font-semibold mr-2 text-left flex-auto"
@@ -61,9 +99,9 @@
     <div class="flex justify-center my-12 md:my-16">
       <div class="bg-gray-800 overflow-hidden rounded-xl">
         <vue-plyr>
-        <audio>
-            <source src="/audio/sample.mp3" type="audio/mp3"/>
-        </audio>
+          <audio>
+            <source src="/audio/sample.mp3" type="audio/mp3" />
+          </audio>
         </vue-plyr>
       </div>
     </div>
@@ -71,7 +109,35 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    this.todo();
+  },
+  methods: {
+    handlePlay() {
+      player.currentTime = localStorage.getItem("currentTime");
+      player.play();
+
+      console.log(player.currentTime);
+    },
+
+    handlePause() {
+      player.pause();
+      console.log(player.currentTime);
+      localStorage.setItem("currentTime", player.currentTime);
+    },
+
+    todo: setInterval(function () {
+      localStorage.setItem("currentTime", player.currentTime);
+
+      console.log(localStorage.getItem("currentTime"));
+
+      if (player.ended) {
+        alert("el video ha terminado");
+      }
+    }, 5000),
+  },
+};
 </script>
 
 <style scoped>
